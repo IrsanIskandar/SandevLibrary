@@ -41,7 +41,191 @@ namespace SandevLibrary.ExportImportFiles
                         //Read each sheet of Excel in a loop, and each sheet page is converted into a DataTable and placed in the DataSet
                         for (int p = 0; p < workbook.NumberOfSheets; p++)
                         {
-                            if (p > 1)
+                            ISheet sheet = workbook.GetSheetAt(p);
+                            DataTable dataTable = new DataTable();
+                            dataTable.TableName = sheet.SheetName;
+                            if (sheet != null)
+                            {
+                                int rowCount = sheet.LastRowNum;//Get the total number of rows
+                                if (rowCount > 0)
+                                {
+                                    IRow firstRow = sheet.GetRow(0);//Get the first row
+                                    int cellCount = firstRow.LastCellNum;//Get the total number of columns
+
+                                    //Build the columns of the datatable
+                                    if (isFirstLineColumnName)
+                                    {
+                                        startRow = 1;//If the first row is the column name, start reading from the second row
+                                        for (int i = firstRow.FirstCellNum; i < cellCount; ++i)
+                                        {
+                                            ICell cell = firstRow.GetCell(i);
+                                            if (cell != null)
+                                            {
+                                                if (cell.StringCellValue != null)
+                                                {
+                                                    DataColumn column = new DataColumn(cell.StringCellValue);
+                                                    dataTable.Columns.Add(column);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        for (int i = firstRow.FirstCellNum; i < cellCount; ++i)
+                                        {
+                                            DataColumn column = new DataColumn("column" + (i + 1));
+                                            dataTable.Columns.Add(column);
+                                        }
+                                    }
+
+                                    //Fill row
+                                    for (int i = startRow; i <= rowCount; i++)
+                                    {
+                                        IRow row = sheet.GetRow(i);
+                                        if (row == null) continue;
+
+                                        DataRow dataRow = dataTable.NewRow();
+                                        for (int j = row.FirstCellNum; j < cellCount; j++)
+                                        {
+                                            ICell cell = row.GetCell(j);
+                                            if (cell == null)
+                                            {
+                                                dataRow[j] = "";
+                                            }
+                                            else
+                                            {
+                                                //CellType(Unknown = -1,Numeric = 0,String = 1,Formula = 2,Blank = 3,Boolean = 4,Error = 5,)
+                                                switch (cell.CellType)
+                                                {
+                                                    case CellType.Blank:
+                                                        dataRow[j] = "";
+                                                        break;
+                                                    case CellType.Numeric:
+                                                        short format = cell.CellStyle.DataFormat;
+                                                        //Processing time format (2015.12.5, 2015/12/5, 2015-12-5, etc.)
+
+                                                        if (format == 0)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (format == 14)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 15)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 31)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 43)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (format == 49)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (format == 57)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 58)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 166)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (format == 167)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (format == 168)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 169)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 170)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else if (format == 171)
+                                                            dataRow[j] = cell.DateCellValue;
+                                                        else
+                                                        {
+                                                            if (format == 49)
+                                                            {
+                                                                if (DateUtil.IsCellDateFormatted(cell))
+                                                                {
+                                                                    DateTime dateTime = cell.DateCellValue;
+                                                                    ICellStyle style = cell.CellStyle;
+                                                                    // Excel uses lowercase m for month whereas .Net uses uppercase
+                                                                    string formatDate = style.GetDataFormatString().Replace('m', 'M');
+                                                                    dataRow[j] = dateTime.ToString(formatDate);
+                                                                }
+                                                                else
+                                                                    dataRow[j] = cell.NumericCellValue;
+                                                            }
+                                                        }
+
+                                                        break;
+                                                    case CellType.String:
+                                                        dataRow[j] = cell.StringCellValue;
+                                                        break;
+                                                    case CellType.Formula:
+                                                        short formatFormula = cell.CellStyle.DataFormat;
+                                                        if (formatFormula == 0)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (formatFormula == 43)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (formatFormula == 49)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else if (formatFormula == 165)
+                                                            dataRow[j] = cell.NumericCellValue;
+                                                        else
+                                                            dataRow[j] = cell.StringCellValue;
+
+                                                        break;
+                                                    default:
+                                                        dataRow[j] = sheet.GetRow(i).GetCell(j).NumericCellValue;
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                        dataTable.Rows.Add(dataRow);
+                                    }
+                                }
+                            }
+                            dataSet.Tables.Add(dataTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return dataSet;
+        }
+
+        /// <summary>
+        /// Read Execl data with limit of the sheet to DataTable (DataSet)
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="limitOfSheet"></param>
+        /// <param name="isFirstLineColumnName"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        /// <returns>Return a DataTable dataset</returns>
+        public static DataSet ExcelToDataSet(string filePath, int limitOfSheet, bool isFirstLineColumnName)
+        {
+            DataSet dataSet = new DataSet();
+            int startRow = 0;
+            try
+            {
+                using (FileStream fs = File.OpenRead(filePath))
+                {
+                    IWorkbook workbook = null;
+                    //  If it is 2007+ Excel version
+                    if (filePath.IndexOf(".xlsx") > 0)
+                    {
+                        workbook = new XSSFWorkbook(fs);
+                    }
+                    //  If it is the version of Excel 2003-
+                    else if (filePath.IndexOf(".xls") > 0)
+                    {
+                        workbook = new HSSFWorkbook(fs);
+                    }
+                    if (workbook != null)
+                    {
+                        int numOfSheet = 1;
+
+                        //Read each sheet of Excel in a loop, and each sheet page is converted into a DataTable and placed in the DataSet
+                        for (int p = 0; p < workbook.NumberOfSheets; p++)
+                        {
+                            if (p > limitOfSheet)
                             {
                                 break;
                             }

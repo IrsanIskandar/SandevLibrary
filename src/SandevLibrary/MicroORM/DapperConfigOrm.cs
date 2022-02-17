@@ -8,16 +8,26 @@ using SandevLibrary.SandevHelpers;
 
 namespace SandevLibrary.MicroORM
 {
-    public class DapperConfigOrm<T>
+    public class DapperConfigOrm
     {
-        private static SqlConnection existingConnection;
-        private static SqlConnection Connection => existingConnection ?? (existingConnection = GetOpenConnection());
+        private static SqlConnection Connection { get; set; } = new SqlConnection();
 
-        private static SqlConnection GetOpenConnection()
+        public DapperConfigOrm() { }
+
+        /// <summary>
+        /// Constructor to start Using Micro ORM with connection parameter to database
+        /// </summary>
+        /// <param name="connectionStrings"></param>
+        public DapperConfigOrm(string connectionStrings)
+        {
+            Connection = GetOpenConnection(connectionStrings);
+        }
+
+        private static SqlConnection GetOpenConnection(string connectionStrings)
         {
             try
             {
-                string connStrings = ConstantsHelper.CONNECTION_STRINGS + ";pooling=true";
+                string connStrings = connectionStrings + ";pooling=true";
                 SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(connStrings);
                 SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString);
 
@@ -39,15 +49,15 @@ namespace SandevLibrary.MicroORM
         }
 
         /// <summary>
-        /// 
+        /// Function Asynchronous return Enumerable List with Object or Value
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
-        /// <returns></returns>
+        /// <returns>Return Enumerable List data Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public async static Task<IEnumerable<T>> ExecuteEnumerableAsync(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public async static Task<IEnumerable<T>> ExecuteEnumerableAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             IEnumerable<T> result = new List<T>();
@@ -95,15 +105,15 @@ namespace SandevLibrary.MicroORM
         }
 
         /// <summary>
-        /// 
+        /// Function Synchronous return Enumerable List with Object or Value
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
-        /// <returns></returns>
+        /// <returns>Return Enumerable List data Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static IEnumerable<T> ExecuteEnumerable(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public static IEnumerable<T> ExecuteEnumerable<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             IEnumerable<T> result = new List<T>();
@@ -152,15 +162,15 @@ namespace SandevLibrary.MicroORM
         }
 
         /// <summary>
-        /// 
+        /// Function Asynchronous return List with Object or Value and data can still be manipulated
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
-        /// <returns></returns>
+        /// <returns>Returns List with Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static async Task<List<T>> ExecuteListAsync(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public static async Task<List<T>> ExecuteListAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             List<T> result = new List<T>();
@@ -208,15 +218,15 @@ namespace SandevLibrary.MicroORM
         }
 
         /// <summary>
-        /// 
+        /// Function Synchronous return List with Object or Value and data can still be manipulated
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
-        /// <returns></returns>
+        /// <returns>Returns List with Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static List<T> ExecuteList(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public static List<T> ExecuteList<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             List<T> result = new List<T>();
@@ -265,15 +275,15 @@ namespace SandevLibrary.MicroORM
         }
 
         /// <summary>
-        /// 
+        /// Function Asynchronous return Single Object or Single Value
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
-        /// <returns></returns>
+        /// <returns>Returns Single Object Or Value</returns>
         /// <exception cref="Exception"></exception>
-        public async static Task<T> ExecuteSingleAsync(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public async static Task<T> ExecuteSingleAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             SqlTransaction transaction = null;
 
@@ -319,15 +329,15 @@ namespace SandevLibrary.MicroORM
         }
 
         /// <summary>
-        /// 
+        /// Function Synchronous return Single Object or Single Value
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
-        /// <returns></returns>
+        /// <returns>Returns Single Object Or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static T ExecuteSingle(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public static T ExecuteSingle<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             SqlTransaction transaction = null;
 
@@ -372,16 +382,17 @@ namespace SandevLibrary.MicroORM
         }
 
         /// <summary>
-        /// 
+        /// Function Asynchronous No return value
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
-        /// <returns></returns>
+        /// <returns>Return a Boolean True or False</returns>
         /// <exception cref="Exception"></exception>
-        public async static Task ExecuteNoReturnAsync(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public async static Task<bool> ExecuteNoReturnAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
+            bool result = false;
             SqlTransaction transaction = null;
 
             try
@@ -397,6 +408,8 @@ namespace SandevLibrary.MicroORM
 
                         if (Connection.State == ConnectionState.Open)
                             Connection.Close();
+
+                        result = true;
                     }
                 }
                 else
@@ -404,6 +417,8 @@ namespace SandevLibrary.MicroORM
                     await Connection.ExecuteAsync(sql: spName, param: param, commandType: commandType);
                     if (Connection.State == ConnectionState.Open)
                         Connection.Close();
+
+                    result = true;
                 }
             }
             catch (Exception ex)
@@ -417,20 +432,26 @@ namespace SandevLibrary.MicroORM
                 if (Connection.State == ConnectionState.Open)
                     Connection.Close();
 
+                result = false;
+
                 throw new Exception(ex.Message);
             }
+
+            return result;
         }
 
         /// <summary>
-        /// 
+        /// Function Synchronous No return value
         /// </summary>
         /// <param name="spName"></param>
         /// <param name="param"></param>
         /// <param name="commandType"></param>
         /// <param name="sqlTransaction"></param>
         /// <exception cref="Exception"></exception>
-        public static void ExecuteNoReturn(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        /// <returns>Return a Boolean True or False</returns>
+        public static bool ExecuteNoReturn<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
+            bool result = false;
             SqlTransaction transaction = null;
 
             try
@@ -446,6 +467,8 @@ namespace SandevLibrary.MicroORM
 
                         if (Connection.State == ConnectionState.Open)
                             Connection.Close();
+
+                        result = true;
                     }
                 }
                 else
@@ -453,6 +476,8 @@ namespace SandevLibrary.MicroORM
                     Connection.Execute(sql: spName, param: param, commandType: commandType);
                     if (Connection.State == ConnectionState.Open)
                         Connection.Close();
+
+                    result = true;
                 }
             }
             catch (Exception ex)
@@ -466,8 +491,12 @@ namespace SandevLibrary.MicroORM
                 if (Connection.State == ConnectionState.Open)
                     Connection.Close();
 
+                result = true;
+
                 throw new Exception(ex.Message);
             }
+
+            return result;
         }
     }
 }
