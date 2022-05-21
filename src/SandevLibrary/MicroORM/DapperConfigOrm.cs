@@ -8,7 +8,7 @@ using SandevLibrary.SandevHelpers;
 
 namespace SandevLibrary.MicroORM
 {
-    public class DapperConfigOrm
+    public class DapperConfigOrm : IDapperTaskAction
     {
         private static SqlConnection Connection { get; set; } = new SqlConnection();
 
@@ -23,11 +23,196 @@ namespace SandevLibrary.MicroORM
             Connection = GetOpenConnection(connectionStrings);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionStrings"></param>
+        /// <param name="connectionTimeout"></param>
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30)
+        {
+            Connection = GetOpenConnection(connectionStrings, connectionTimeout);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionStrings"></param>
+        /// <param name="connectionTimeout"></param>
+        /// <param name="connectionLifetime"></param>
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0)
+        {
+            Connection = GetOpenConnection(connectionStrings, connectionTimeout, connectionLifetime);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionStrings"></param>
+        /// <param name="connectionTimeout"></param>
+        /// <param name="connectionLifetime"></param>
+        /// <param name="minPool"></param>
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 0)
+        {
+            Connection = GetOpenConnection(connectionStrings, connectionTimeout, connectionLifetime, minPool);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionStrings"></param>
+        /// <param name="connectionTimeout"></param>
+        /// <param name="connectionLifetime"></param>
+        /// <param name="minPool"></param>
+        /// <param name="maxPool"></param>
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 0, int maxPool = 50)
+        {
+            Connection = GetOpenConnection(connectionStrings, connectionTimeout, connectionLifetime, minPool, maxPool);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionStrings"></param>
+        /// <param name="connectionTimeout"></param>
+        /// <param name="connectionLifetime"></param>
+        /// <param name="minPool"></param>
+        /// <param name="maxPool"></param>
+        /// <param name="pooling"></param>
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 0, int maxPool = 50, bool pooling = false)
+        {
+            Connection = GetOpenConnection(connectionStrings, connectionTimeout, connectionLifetime, minPool, maxPool, pooling);
+        }
+
         private static SqlConnection GetOpenConnection(string connectionStrings)
         {
             try
             {
-                string connStrings = connectionStrings + ";pooling=true";
+                string connStrings = connectionStrings;
+                SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(connStrings);
+                SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString);
+
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                return connection;
+            }
+            catch (SqlException MyEx)
+            {
+                throw new Exception(MyEx.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private static SqlConnection GetOpenConnection(string connectionStrings, int connectionTimeout)
+        {
+            try
+            {
+                string connStrings = connectionStrings + $";Connection Timeout={connectionTimeout};";
+                SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(connStrings);
+                SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString);
+
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                return connection;
+            }
+            catch (SqlException MyEx)
+            {
+                throw new Exception(MyEx.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private static SqlConnection GetOpenConnection(string connectionStrings, int connectionTimeout, int connectionLifetime)
+        {
+            try
+            {
+                string connStrings = connectionStrings + $";Connection Timeout={connectionTimeout};Connection Lifetime={connectionLifetime};";
+                SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(connStrings);
+                SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString);
+
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                return connection;
+            }
+            catch (SqlException MyEx)
+            {
+                throw new Exception(MyEx.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private static SqlConnection GetOpenConnection(string connectionStrings, int connectionTimeout, int connectionLifetime, int minPool)
+        {
+            try
+            {
+                string connStrings = connectionStrings + $";Connection Timeout={connectionTimeout};Connection Lifetime={connectionLifetime};Min Pool Size={minPool};";
+                SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(connStrings);
+                SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString);
+
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                return connection;
+            }
+            catch (SqlException MyEx)
+            {
+                throw new Exception(MyEx.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private static SqlConnection GetOpenConnection(string connectionStrings, int connectionTimeout, int connectionLifetime, int minPool, int maxPool)
+        {
+            try
+            {
+                string connStrings = connectionStrings + $";Connection Timeout={connectionTimeout};Connection Lifetime={connectionLifetime};Min Pool Size={minPool};Max Pool Size{maxPool};";
+                SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(connStrings);
+                SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString);
+
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                return connection;
+            }
+            catch (SqlException MyEx)
+            {
+                throw new Exception(MyEx.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private static SqlConnection GetOpenConnection(string connectionStrings, int connectionTimeout, int connectionLifetime, int minPool, int maxPool, bool pooling)
+        {
+            try
+            {
+                string connStrings = connectionStrings + $";Connection Timeout={connectionTimeout};Connection Lifetime={connectionLifetime};Min Pool Size={minPool};Max Pool Size{maxPool};Pooling={pooling};";
                 SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(connStrings);
                 SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString);
 
@@ -57,7 +242,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <returns>Return Enumerable List data Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public async static Task<IEnumerable<T>> ExecuteEnumerableAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public async Task<IEnumerable<T>> ExecuteEnumerableAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             IEnumerable<T> result = new List<T>();
@@ -113,7 +298,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <returns>Return Enumerable List data Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static IEnumerable<T> ExecuteEnumerable<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public IEnumerable<T> ExecuteEnumerable<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             IEnumerable<T> result = new List<T>();
@@ -170,7 +355,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <returns>Returns List with Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static async Task<List<T>> ExecuteListAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public async Task<List<T>> ExecuteListAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             List<T> result = new List<T>();
@@ -226,7 +411,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <returns>Returns List with Object or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static List<T> ExecuteList<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public List<T> ExecuteList<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             // return empty object when query returns no rows
             List<T> result = new List<T>();
@@ -283,7 +468,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <returns>Returns Single Object Or Value</returns>
         /// <exception cref="Exception"></exception>
-        public async static Task<T> ExecuteSingleAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public async Task<T> ExecuteSingleAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             SqlTransaction transaction = null;
 
@@ -337,7 +522,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <returns>Returns Single Object Or Value</returns>
         /// <exception cref="Exception"></exception>
-        public static T ExecuteSingle<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public T ExecuteSingle<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             SqlTransaction transaction = null;
 
@@ -390,7 +575,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <returns>Return a Boolean True or False</returns>
         /// <exception cref="Exception"></exception>
-        public async static Task<bool> ExecuteNoReturnAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public async Task<bool> ExecuteNoReturnAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             bool result = false;
             SqlTransaction transaction = null;
@@ -449,7 +634,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="sqlTransaction"></param>
         /// <exception cref="Exception"></exception>
         /// <returns>Return a Boolean True or False</returns>
-        public static bool ExecuteNoReturn<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+        public bool ExecuteNoReturn<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
         {
             bool result = false;
             SqlTransaction transaction = null;
