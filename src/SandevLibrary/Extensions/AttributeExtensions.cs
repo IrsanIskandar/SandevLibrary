@@ -8,7 +8,7 @@ namespace SandevLibrary.Extensions
 {
     public class AttributeExtensions
     {
-        private static T GetPropertyClass<T>() where T : new()
+        private static T GetPropertyClass<T>() where T : class, new()
         {
             T item = new T();
             string fieldName = string.Empty;

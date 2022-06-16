@@ -8,6 +8,12 @@ namespace SandevLibrary.Extensions
 {
     public static class CollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="listProperty"></param>
+        /// <returns></returns>
         public static List<TValue> ToList<TValue>(this List<TValue> listProperty) where TValue : new()
         {
             IList<PropertyInfo> properties = typeof(TValue).GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.IgnoreCase).ToList();
@@ -22,6 +28,13 @@ namespace SandevLibrary.Extensions
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TAttribute"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="properties"></param>
+        /// <returns></returns>
         private static TValue ReadAttributeUsage<TAttribute, TValue>(IList<PropertyInfo> properties) where TValue : new() where TAttribute : Attribute
         {
             string fieldName = string.Empty;

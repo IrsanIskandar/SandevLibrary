@@ -12,6 +12,11 @@ namespace SandevLibrary.StringUtils
         private static readonly string _letterUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private static readonly string[] suffixes = { "Bytes", "KB", "MB", "GB", "TB", "PB" };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static string FormatSize(Int64 bytes)
         {
             int counter = 0;
@@ -25,6 +30,11 @@ namespace SandevLibrary.StringUtils
             return string.Format("{0:n1} {1}", number, suffixes[counter]);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string GenerateNumber(int length)
         {
             StringBuilder builder = new StringBuilder(length);
@@ -41,6 +51,11 @@ namespace SandevLibrary.StringUtils
             return generate;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string GenerateStringLowercase(int length)
         {
             StringBuilder builder = new StringBuilder(length);
@@ -57,6 +72,11 @@ namespace SandevLibrary.StringUtils
             return generate;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string GenerateStringUppercase(int length)
         {
             StringBuilder builder = new StringBuilder(length);
@@ -73,6 +93,11 @@ namespace SandevLibrary.StringUtils
             return generate;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string GenerateAlphanumeric(int length)
         {
             StringBuilder builder = new StringBuilder(length);
@@ -90,6 +115,13 @@ namespace SandevLibrary.StringUtils
             return generate;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="lastCount"></param>
+        /// <param name="padChar"></param>
+        /// <returns></returns>
         public static string PaddingLeft(int length, string lastCount, char padChar)
         {
             int totalWidth = length;
@@ -98,6 +130,13 @@ namespace SandevLibrary.StringUtils
             return lastCounter.PadLeft(totalWidth, padChar);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="lastCount"></param>
+        /// <param name="padChar"></param>
+        /// <returns></returns>
         public static string PaddingRight(int length, string lastCount, char padChar)
         {
             int totalWidth = length;
