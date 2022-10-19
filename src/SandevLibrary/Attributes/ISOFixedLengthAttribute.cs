@@ -2,7 +2,7 @@
 
 namespace SandevLibrary.Attributes
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = true)]
     public class ISOFixedLengthAttribute : Attribute
     {
         public int LengthIso { get; set; }

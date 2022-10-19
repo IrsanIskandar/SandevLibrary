@@ -51,7 +51,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="connectionTimeout"></param>
         /// <param name="connectionLifetime"></param>
         /// <param name="minPool"></param>
-        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 0)
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 1)
         {
             Connection = GetOpenConnection(connectionStrings, connectionTimeout, connectionLifetime, minPool);
         }
@@ -64,7 +64,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="connectionLifetime"></param>
         /// <param name="minPool"></param>
         /// <param name="maxPool"></param>
-        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 0, int maxPool = 50)
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 1, int maxPool = 50)
         {
             Connection = GetOpenConnection(connectionStrings, connectionTimeout, connectionLifetime, minPool, maxPool);
         }
@@ -78,7 +78,7 @@ namespace SandevLibrary.MicroORM
         /// <param name="minPool"></param>
         /// <param name="maxPool"></param>
         /// <param name="pooling"></param>
-        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 0, int maxPool = 50, bool pooling = false)
+        public DapperConfigOrm(string connectionStrings, int connectionTimeout = 30, int connectionLifetime = 0, int minPool = 1, int maxPool = 50, bool pooling = false)
         {
             Connection = GetOpenConnection(connectionStrings, connectionTimeout, connectionLifetime, minPool, maxPool, pooling);
         }
