@@ -138,11 +138,14 @@ namespace SandevLibrary.ExportImportFiles
                                                             {
                                                                 if (DateUtil.IsCellDateFormatted(cell))
                                                                 {
-                                                                    DateTime dateTime = cell.DateCellValue;
-                                                                    ICellStyle style = cell.CellStyle;
-                                                                    // Excel uses lowercase m for month whereas .Net uses uppercase
-                                                                    string formatDate = style.GetDataFormatString().Replace('m', 'M');
-                                                                    dataRow[j] = dateTime.ToString(formatDate);
+                                                                    if (cell.DateCellValue is not null)
+                                                                    {
+																		DateTime dateTime = cell.DateCellValue.Value;
+																		ICellStyle style = cell.CellStyle;
+																		// Excel uses lowercase m for month whereas .Net uses uppercase
+																		string formatDate = style.GetDataFormatString().Replace('m', 'M');
+																		dataRow[j] = dateTime.ToString(formatDate);
+																	}
                                                                 }
                                                                 else
                                                                     dataRow[j] = cell.NumericCellValue;
@@ -328,11 +331,14 @@ namespace SandevLibrary.ExportImportFiles
                                                                 {
                                                                     if (DateUtil.IsCellDateFormatted(cell))
                                                                     {
-                                                                        DateTime dateTime = cell.DateCellValue;
-                                                                        ICellStyle style = cell.CellStyle;
-                                                                        // Excel uses lowercase m for month whereas .Net uses uppercase
-                                                                        string formatDate = style.GetDataFormatString().Replace('m', 'M');
-                                                                        dataRow[j] = dateTime.ToString(formatDate);
+                                                                        if (cell.DateCellValue is not null)
+                                                                        {
+																			DateTime dateTime = cell.DateCellValue.Value;
+																			ICellStyle style = cell.CellStyle;
+																			// Excel uses lowercase m for month whereas .Net uses uppercase
+																			string formatDate = style.GetDataFormatString().Replace('m', 'M');
+																			dataRow[j] = dateTime.ToString(formatDate);
+																		}
                                                                     }
                                                                     else
                                                                         dataRow[j] = cell.NumericCellValue;
