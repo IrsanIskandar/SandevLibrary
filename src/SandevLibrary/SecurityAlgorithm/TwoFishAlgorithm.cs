@@ -112,7 +112,7 @@ namespace SandevLibrary.SecurityAlgorithm
             try
             {
                 _cipher = _padding == null ?
-                new PaddedBufferedBlockCipher(_blockCipher) : new PaddedBufferedBlockCipher(_blockCipher, _padding);
+                new PaddedBufferedBlockCipher(_blockCipher, _padding) : new PaddedBufferedBlockCipher(_blockCipher, _padding);
 
                 _cipher.Init(forEncrypt, SetKeyParameter);
 

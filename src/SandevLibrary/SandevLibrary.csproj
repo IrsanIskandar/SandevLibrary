@@ -1,31 +1,84 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
-    <AssemblyVersion>1.1.3</AssemblyVersion>
-    <FileVersion>1.1.3</FileVersion>
-    <Version>1.1.3</Version>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <AssemblyVersion>2.0.1</AssemblyVersion>
+    <FileVersion>2.0.1</FileVersion>
+    <Version>2.0.1</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Dapper">
-      <Version>2.0.123</Version>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NPOI" Version="2.7.0" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
+    <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-    <PackageReference Include="Dapper">
-      <Version>2.0.123</Version>
-    </PackageReference>
-  </ItemGroup>
+	<!--<ItemGroup>
+		<Content Include="Asset\lib\**\*.*">
+			<Link>runtimes\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<PublishState>Included</PublishState>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>true</Pack>
+			<Visible>False</Visible>
+			<IncludeInVsix>true</IncludeInVsix>
+		</Content>
+	</ItemGroup>-->
+	<Target Name="IronPdfChromeWindowsBuild" BeforeTargets="Build">
+		<Message Text="Copying IronPdf files from Asset\lib\runtimes to build directory for .NET Framework on Windows..." Importance="high" />
+		<ItemGroup>
+			<RuntimesNativeLibsBuild Include="Asset\lib\**\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(RuntimesNativeLibsBuild)" DestinationFolder="$(OutputPath)runtimes\%(RecursiveDir)" />
+	</Target>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NPOI" Version="2.5.6" />
-    <PackageReference Include="RestSharp" Version="107.3.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+    <Reference Include="BitMiracle.LibTiff.NET">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\BitMiracle.LibTiff.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\MicroORM\DapperPublish\netStandard2.0\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPdf">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\IronPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="IronSoftware.Drawing.Common">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\IronSoftware.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IronXL">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironxl.excel\2022.12.11262\lib\netstandard2.0\IronXL.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.SystemEvents">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\Microsoft.Win32.SystemEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp.Drawing">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\SixLabors.ImageSharp.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common">
+      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\System.Drawing.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

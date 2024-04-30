@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SandevLibrary.HttpClientExtensions.RestsharpAction
@@ -18,7 +19,7 @@ namespace SandevLibrary.HttpClientExtensions.RestsharpAction
             RestClientOptions clientOptions = new RestClientOptions(_BASE_URL)
             {
                 ThrowOnAnyError = true,
-                Timeout = 1500
+                MaxTimeout = 10000
             };
             RestClient client = new RestClient(clientOptions);
 
@@ -36,91 +37,243 @@ namespace SandevLibrary.HttpClientExtensions.RestsharpAction
 
         public RestSharpExtention() { }
 
-        public RestSharpExtention(string baseUrl) 
-        { 
+        public RestSharpExtention(string baseUrl)
+        {
             _BASE_URL = baseUrl;
         }
 
-        public async Task<TObject> GetRequestAsync<TObject>(string va_request_endpoint, string stringjson, ParameterType parameterType, bool isJwt = false)
+        public async Task<TObject> GetRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
         {
-            RestRequest request = RequestApi(va_request_endpoint, Method.Post);
-            request.AddParameter("application/Json", stringjson, parameterType);
-            if (isJwt)
-                request.AddHeader("Authorization", "Bearer ");
+            RestRequest request = RequestApi(va_request_endpoint, Method.Get);
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
 
-            RestResponse<TObject> response = await Client.ExecuteAsync<TObject>(request);
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = await Client.ExecuteAsync<TObject>(request);
 
             if (response.IsSuccessful)
-            {
                 return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
             }
 
             return default(TObject);
         }
 
-        public async Task<TObject> PostRequestAsync<TObject>(string va_request_endpoint, string stringjson, ParameterType parameterType, bool isJwt = false)
+        public TObject GetRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string ? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
         {
-            RestRequest request = RequestApi(va_request_endpoint, Method.Post);
-            request.AddParameter("application/Json", stringjson, parameterType);
-            if (isJwt)
-                request.AddHeader("Authorization", "Bearer ");
+            RestRequest request = RequestApi(va_request_endpoint, Method.Get);
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
 
-            RestResponse<TObject> response = await Client.ExecuteAsync<TObject>(request);
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = Client.Execute<TObject>(request);
 
             if (response.IsSuccessful)
-            {
                 return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
             }
 
             return default(TObject);
         }
 
-        public async Task<TObject> PutRequestAsync<TObject>(string va_request_endpoint, string stringjson, ParameterType parameterType, bool isJwt = false)
+        public async Task<TObject> PostRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+        {
+            RestRequest request = RequestApi(va_request_endpoint, Method.Post);
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
+
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = await Client.ExecuteAsync<TObject>(request);
+
+            if (response.IsSuccessful)
+                return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
+            }
+
+            return default(TObject);
+        }
+
+        public TObject PostRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+        {
+            try
+            {
+                RestRequest request = RequestApi(va_request_endpoint, Method.Post);
+                if (headers is not null)
+                    foreach (var item in headers)
+                        request.AddHeader(item.Key, item.Value.ToString());
+
+                if (!string.IsNullOrEmpty(stringJson))
+                    request.AddParameter(contenType, stringJson, parameterType);
+
+                RestResponse<TObject>? response = Client.Execute<TObject>(request);
+
+                if (response.IsSuccessful)
+                    return response.Data;
+                else if (response.IsSuccessStatusCode)
+                {
+                    TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return default(TObject);
+        }
+
+        public async Task<TObject> PutRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
         {
             RestRequest request = RequestApi(va_request_endpoint, Method.Put);
-            request.AddParameter("application/Json", stringjson, parameterType);
-            if (isJwt)
-                request.AddHeader("Authorization", "Bearer ");
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
 
-            RestResponse<TObject> response = await Client.ExecuteAsync<TObject>(request);
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = await Client.ExecuteAsync<TObject>(request);
 
             if (response.IsSuccessful)
-            {
                 return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
             }
 
             return default(TObject);
         }
 
-        public async Task<TObject> PatchRequestAsync<TObject>(string va_request_endpoint, string stringjson, ParameterType parameterType, bool isJwt = false)
+        public TObject PutRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+        {
+            RestRequest request = RequestApi( va_request_endpoint, Method.Put);
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
+
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = Client.Execute<TObject>(request);
+
+            if (response.IsSuccessful)
+                return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
+            }
+
+            return default(TObject);
+        }
+
+        public async Task<TObject> PatchRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
         {
             RestRequest request = RequestApi(va_request_endpoint, Method.Patch);
-            request.AddParameter("application/Json", stringjson, parameterType);
-            if (isJwt)
-                request.AddHeader("Authorization", "Bearer ");
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
 
-            RestResponse<TObject> response = await Client.ExecuteAsync<TObject>(request);
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = await Client.ExecuteAsync<TObject>(request);
 
             if (response.IsSuccessful)
-            {
                 return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
             }
 
             return default(TObject);
         }
 
-        public async Task<TObject> DeleteRequestAsync<TObject>(string va_request_endpoint, string stringjson, ParameterType parameterType, bool isJwt = false)
+        public TObject PatchRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
         {
-            RestRequest request = RequestApi(va_request_endpoint, Method.Delete);
-            request.AddParameter("application/Json", stringjson, parameterType);
-            if (isJwt)
-                request.AddHeader("Authorization", "Bearer ");
+            RestRequest request = RequestApi(va_request_endpoint, Method.Patch);
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
 
-            RestResponse<TObject> response = await Client.ExecuteAsync<TObject>(request);
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = Client.Execute<TObject>(request);
 
             if (response.IsSuccessful)
-            {
                 return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
+            }
+
+            return default(TObject);
+        }
+
+        public async Task<TObject> DeleteRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+        {
+            RestRequest request = RequestApi(va_request_endpoint, Method.Delete);
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
+
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = await Client.ExecuteAsync<TObject>(request);
+
+            if (response.IsSuccessful)
+                return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
+            }
+
+            return default(TObject);
+        }
+
+        public TObject DeleteRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contenType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+        {
+            RestRequest request = RequestApi(va_request_endpoint, Method.Delete);
+            if (headers is not null)
+                foreach (var item in headers)
+                    request.AddHeader(item.Key, item.Value.ToString());
+
+            if (!string.IsNullOrEmpty(stringJson))
+                request.AddParameter(contenType, stringJson, parameterType);
+
+            RestResponse<TObject>? response = Client.Execute<TObject>(request);
+
+            if (response.IsSuccessful)
+                return response.Data;
+            else if (response.IsSuccessStatusCode)
+            {
+                TObject result = JsonSerializer.Deserialize<TObject>(response.Content);
+                return result;
             }
 
             return default(TObject);
