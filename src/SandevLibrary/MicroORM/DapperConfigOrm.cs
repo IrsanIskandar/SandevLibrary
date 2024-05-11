@@ -241,20 +241,19 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <returns>Return Enumerable List data Object or Value</returns>
 	/// <exception cref="Exception"></exception>
-	public async Task<IEnumerable<T>> ExecuteEnumerableAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public async Task<IEnumerable<TEntity>> ExecuteEnumerableAsync<TEntity>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		// return empty object when query returns no rows
-		IEnumerable<T> result = new List<T>();
+		IEnumerable<TEntity> result = [];
 		SqlTransaction transaction = null;
 
 		try
 		{
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					result = await Connection.QueryAsync<T>(sql: spName, param: param, commandType: commandType, transaction: transaction);
+					result = await Connection.QueryAsync<TEntity>(sql: spName, param: param, commandType: commandType, transaction: transaction);
 					transaction.Commit();
 					transaction.Dispose();
 				}
@@ -266,7 +265,7 @@ public class DapperConfigOrm : IDapperTaskAction
 			}
 			else
 			{
-				result = await Connection.QueryAsync<T>(sql: spName, param: param, commandType: commandType);
+				result = await Connection.QueryAsync<TEntity>(sql: spName, param: param, commandType: commandType);
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
@@ -297,20 +296,19 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <returns>Return Enumerable List data Object or Value</returns>
 	/// <exception cref="Exception"></exception>
-	public IEnumerable<T> ExecuteEnumerable<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public IEnumerable<TEntity> ExecuteEnumerable<TEntity>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		// return empty object when query returns no rows
-		IEnumerable<T> result = new List<T>();
+		IEnumerable<TEntity> result = [];
 		SqlTransaction transaction = null;
 
 		try
 		{
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					result = Connection.Query<T>(sql: spName, param: param, commandType: commandType, transaction: transaction);
+					result = Connection.Query<TEntity>(sql: spName, param: param, commandType: commandType, transaction: transaction);
 					transaction.Commit();
 					transaction.Dispose();
 				}
@@ -322,7 +320,7 @@ public class DapperConfigOrm : IDapperTaskAction
 			}
 			else
 			{
-				result = Connection.Query<T>(sql: spName, param: param, commandType: commandType);
+				result = Connection.Query<TEntity>(sql: spName, param: param, commandType: commandType);
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
@@ -354,20 +352,19 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <returns>Returns List with Object or Value</returns>
 	/// <exception cref="Exception"></exception>
-	public async Task<List<T>> ExecuteListAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public async Task<List<TEntity>> ExecuteListAsync<TEntity>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		// return empty object when query returns no rows
-		List<T> result = new List<T>();
+		List<TEntity> result = [];
 		SqlTransaction transaction = null;
 
 		try
 		{
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					result = await Connection.QueryAsync<T>(sql: spName, param: param, commandType: commandType, transaction: transaction) as List<T>;
+					result = await Connection.QueryAsync<TEntity>(sql: spName, param: param, commandType: commandType, transaction: transaction) as List<TEntity>;
 					transaction.Commit();
 					transaction.Dispose();
 				}
@@ -379,7 +376,7 @@ public class DapperConfigOrm : IDapperTaskAction
 			}
 			else
 			{
-				result = await Connection.QueryAsync<T>(sql: spName, param: param, commandType: commandType) as List<T>;
+				result = await Connection.QueryAsync<TEntity>(sql: spName, param: param, commandType: commandType) as List<TEntity>;
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
@@ -410,20 +407,19 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <returns>Returns List with Object or Value</returns>
 	/// <exception cref="Exception"></exception>
-	public List<T> ExecuteList<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public List<TEntity> ExecuteList<TEntity>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		// return empty object when query returns no rows
-		List<T> result = new List<T>();
+		List<TEntity> result = [];
 		SqlTransaction transaction = null;
 
 		try
 		{
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					result = Connection.Query<T>(sql: spName, param: param, commandType: commandType, transaction: transaction) as List<T>;
+					result = Connection.Query<TEntity>(sql: spName, param: param, commandType: commandType, transaction: transaction) as List<TEntity>;
 					transaction.Commit();
 					transaction.Dispose();
 				}
@@ -435,7 +431,7 @@ public class DapperConfigOrm : IDapperTaskAction
 			}
 			else
 			{
-				result = Connection.Query<T>(sql: spName, param: param, commandType: commandType) as List<T>;
+				result = Connection.Query<TEntity>(sql: spName, param: param, commandType: commandType) as List<TEntity>;
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
@@ -467,7 +463,7 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <returns>Returns Single Object Or Value</returns>
 	/// <exception cref="Exception"></exception>
-	public async Task<T> ExecuteSingleAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public async Task<TEntity> ExecuteSingleAsync<TEntity>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		SqlTransaction transaction = null;
 
@@ -475,10 +471,9 @@ public class DapperConfigOrm : IDapperTaskAction
 		{
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					T result = await Connection.QueryFirstOrDefaultAsync<T>(sql: spName, param: param, commandType: commandType, transaction: transaction);
+					TEntity result = await Connection.QueryFirstOrDefaultAsync<TEntity>(sql: spName, param: param, commandType: commandType, transaction: transaction);
 					transaction.Commit();
 					transaction.Dispose();
 
@@ -490,7 +485,7 @@ public class DapperConfigOrm : IDapperTaskAction
 			}
 			else
 			{
-				T result = await Connection.QueryFirstOrDefaultAsync<T>(sql: spName, param: param, commandType: commandType);
+				TEntity result = await Connection.QueryFirstOrDefaultAsync<TEntity>(sql: spName, param: param, commandType: commandType);
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
@@ -521,7 +516,7 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <returns>Returns Single Object Or Value</returns>
 	/// <exception cref="Exception"></exception>
-	public T ExecuteSingle<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public TEntity ExecuteSingle<TEntity>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		SqlTransaction transaction = null;
 
@@ -529,10 +524,9 @@ public class DapperConfigOrm : IDapperTaskAction
 		{
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					T result = Connection.QueryFirstOrDefault<T>(sql: spName, param: param, commandType: commandType, transaction: transaction);
+					TEntity result = Connection.QueryFirstOrDefault<TEntity>(sql: spName, param: param, commandType: commandType, transaction: transaction);
 					transaction.Commit();
 					transaction.Dispose();
 					if (Connection.State == ConnectionState.Open)
@@ -543,7 +537,7 @@ public class DapperConfigOrm : IDapperTaskAction
 			}
 			else
 			{
-				T result = Connection.QueryFirstOrDefault<T>(sql: spName, param: param, commandType: commandType);
+				TEntity result = Connection.QueryFirstOrDefault<TEntity>(sql: spName, param: param, commandType: commandType);
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
@@ -574,35 +568,37 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <returns>Return a Boolean True or False</returns>
 	/// <exception cref="Exception"></exception>
-	public async Task<bool> ExecuteNoReturnAsync<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public async Task<bool> ExecuteBooleanReturnAsync(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		bool result = false;
 		SqlTransaction transaction = null;
 
 		try
 		{
+			int res = 0;
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					await Connection.ExecuteAsync(sql: spName, param: param, commandType: commandType, transaction: transaction);
+					res = await Connection.ExecuteAsync(sql: spName, param: param, commandType: commandType, transaction: transaction);
 					transaction.Commit();
 					transaction.Dispose();
 
 					if (Connection.State == ConnectionState.Open)
 						Connection.Close();
 
-					result = true;
+					if (res > 0)
+						result = true;
 				}
 			}
 			else
 			{
-				await Connection.ExecuteAsync(sql: spName, param: param, commandType: commandType);
+				res = await Connection.ExecuteAsync(sql: spName, param: param, commandType: commandType);
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
-				result = true;
+				if (res > 0)
+					result = true;
 			}
 		}
 		catch (Exception ex)
@@ -615,8 +611,6 @@ public class DapperConfigOrm : IDapperTaskAction
 
 			if (Connection.State == ConnectionState.Open)
 				Connection.Close();
-
-			result = false;
 
 			throw new Exception(ex.Message);
 		}
@@ -633,35 +627,37 @@ public class DapperConfigOrm : IDapperTaskAction
 	/// <param name="sqlTransaction"></param>
 	/// <exception cref="Exception"></exception>
 	/// <returns>Return a Boolean True or False</returns>
-	public bool ExecuteNoReturn<T>(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
+	public bool ExecuteBooleanReturn(string spName, object param = null, CommandType commandType = CommandType.Text, bool sqlTransaction = false)
 	{
 		bool result = false;
 		SqlTransaction transaction = null;
 
 		try
 		{
+			int res = 0;
 			if (sqlTransaction == true)
 			{
-				Connection.Open();
 				using (transaction = Connection.BeginTransaction())
 				{
-					Connection.Execute(sql: spName, param: param, commandType: commandType, transaction: transaction);
+					res = Connection.Execute(sql: spName, param: param, commandType: commandType, transaction: transaction);
 					transaction.Commit();
 					transaction.Dispose();
 
 					if (Connection.State == ConnectionState.Open)
 						Connection.Close();
 
-					result = true;
+					if (res > 0)
+						result = true;
 				}
 			}
 			else
 			{
-				Connection.Execute(sql: spName, param: param, commandType: commandType);
+				res = Connection.Execute(sql: spName, param: param, commandType: commandType);
 				if (Connection.State == ConnectionState.Open)
 					Connection.Close();
 
-				result = true;
+				if (res > 0)
+					result = true;
 			}
 		}
 		catch (Exception ex)
@@ -674,8 +670,6 @@ public class DapperConfigOrm : IDapperTaskAction
 
 			if (Connection.State == ConnectionState.Open)
 				Connection.Close();
-
-			result = true;
 
 			throw new Exception(ex.Message);
 		}
