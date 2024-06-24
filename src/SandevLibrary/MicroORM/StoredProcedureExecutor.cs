@@ -134,7 +134,7 @@ public static class StoredProcedureExecutor
 
 			try
 			{
-				await command.ExecuteReaderAsync();
+				await command.ExecuteNonQueryAsync();
 			}
 			catch (Exception)
 			{
@@ -239,7 +239,7 @@ public static class StoredProcedureExecutor
 
 			try
 			{
-				command.ExecuteReader();
+				command.ExecuteNonQuery();
 			}
 			catch (Exception)
 			{

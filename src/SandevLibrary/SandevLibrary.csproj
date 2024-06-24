@@ -2,14 +2,15 @@
 
   <PropertyGroup>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
-    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
+    <FileVersion>2.1.1</FileVersion>
+    <Version>2.1.1</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -48,9 +49,6 @@
   <ItemGroup>
     <Reference Include="BitMiracle.LibTiff.NET">
       <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\BitMiracle.LibTiff.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="Dapper">
-      <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\MicroORM\DapperPublish\netStandard2.0\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="IronPdf">
       <HintPath>..\..\..\..\..\PublishLibrary\SandevSupportLibrary\IronLibrary\CrackedByIrsan\ironpdf\2023.1.11416\lib\netstandard2.0\IronPdf.dll</HintPath>
