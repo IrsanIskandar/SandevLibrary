@@ -10,7 +10,7 @@ namespace SandevLibrary.MicroORM;
 /// <summary>
 /// Scaffold-DbContext "Server=192.168.1.41,1433;Database=SSO_UserManagement;User Id=sa;Password=Bekasi2024*#;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir SSODataContext -Force
 /// </summary>
-public static class StoredProcedureExecutor
+public static class StoredProcedureExecutorSystemDataSqlClient
 {
 	public static async Task<T> ExecuteScalarSFAsync<T>(this DbContext context, string storedFunctionName, string parameters = "", string schema = "dbo")
 	{
