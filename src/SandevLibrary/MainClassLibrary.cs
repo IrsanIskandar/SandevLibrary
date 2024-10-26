@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace SandevLibrary
-{
-    public class MainClassLibrary
-    {
+namespace SandevLibrary;
 
-    }
+public class MainClassLibrary
+{
+
 }
