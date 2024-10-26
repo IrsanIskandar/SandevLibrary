@@ -25,7 +25,7 @@ public class RestSharpExtention
 		RestClientOptions clientOptions = new RestClientOptions(_BASE_URL)
 		{
 			ThrowOnAnyError = true,
-			MaxTimeout = 10000
+			Timeout = System.TimeSpan.FromSeconds(120)
 		};
 		RestClient client = new RestClient(clientOptions);
 
