@@ -63,7 +63,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public async Task<TObject> GetSingleRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public async Task<TObject> GetSingleRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Get);
         if (headers is not null)
@@ -71,7 +71,7 @@ public class RestSharpExtention
                 request.AddHeader(item.Key, item.Value.ToString());
 
         if (!string.IsNullOrEmpty(stringJson))
-            request.AddParameter("application/Json", stringJson, parameterType);
+            request.AddParameter(contentType, stringJson, parameterType);
         RestResponse<TObject> response = await Client.ExecuteGetAsync<TObject>(request);
 
         if (response.IsSuccessful)
@@ -134,7 +134,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public List<TObject> GetListRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public List<TObject> GetListRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Get);
         if (headers is not null)
@@ -142,7 +142,7 @@ public class RestSharpExtention
                 request.AddHeader(item.Key, item.Value.ToString());
 
         if (!string.IsNullOrEmpty(stringJson))
-            request.AddParameter("application/Json", stringJson, parameterType);
+            request.AddParameter(contentType, stringJson, parameterType);
         RestResponse<List<TObject>> response = Client.ExecuteGet<List<TObject>>(request);
 
         if (response.IsSuccessful)
@@ -156,7 +156,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public async Task<List<TObject>> GetListRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public async Task<List<TObject>> GetListRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Get);
         if (headers is not null)
@@ -164,7 +164,7 @@ public class RestSharpExtention
                 request.AddHeader(item.Key, item.Value.ToString());
 
         if (!string.IsNullOrEmpty(stringJson))
-            request.AddParameter("application/Json", stringJson, parameterType);
+            request.AddParameter(contentType, stringJson, parameterType);
         RestResponse<List<TObject>> response = await Client.ExecuteAsync<List<TObject>>(request);
 
         if (response.IsSuccessful)
@@ -289,7 +289,7 @@ public class RestSharpExtention
     }
     #endregion
 
-    public TObject PostRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public TObject PostRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Post);
         if (headers is not null)
@@ -311,7 +311,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public (TObject, int) PostRequestWithStatusCode<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public (TObject, int) PostRequestWithStatusCode<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Post);
         if (headers is not null)
@@ -348,7 +348,7 @@ public class RestSharpExtention
         return (data, statusCode);
     }
 
-    public async Task<TObject> PostRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public async Task<TObject> PostRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Post);
         if (headers is not null)
@@ -401,7 +401,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public TObject PutRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public TObject PutRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Put);
         if (headers is not null)
@@ -423,7 +423,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public (TObject, int) PutRequestWithStatusCode<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public (TObject, int) PutRequestWithStatusCode<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Put);
         if (headers is not null)
@@ -456,7 +456,7 @@ public class RestSharpExtention
         return (data, statusCode);
     }
 
-    public async Task<TObject> PutRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public async Task<TObject> PutRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Put);
         if (headers is not null)
@@ -478,7 +478,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public TObject PatchRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public TObject PatchRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Patch);
         if (headers is not null)
@@ -500,7 +500,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public (TObject, int) PatchRequestWithStatusCode<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public (TObject, int) PatchRequestWithStatusCode<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Patch);
         if (headers is not null)
@@ -533,7 +533,7 @@ public class RestSharpExtention
         return (data, statusCode);
     }
 
-    public async Task<TObject> PatchRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public async Task<TObject> PatchRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Patch);
         if (headers is not null)
@@ -555,7 +555,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public TObject DeleteRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public TObject DeleteRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Delete);
         if (headers is not null)
@@ -577,7 +577,7 @@ public class RestSharpExtention
         return response.Data;
     }
 
-    public async Task<TObject> DeleteRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = null, string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
+    public async Task<TObject> DeleteRequestAsync<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)
     {
         RestRequest request = RequestApi(va_request_endpoint, Method.Delete);
         if (headers is not null)
