@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="TxnHeaderActivityDoctorPrescription.ParameterValues" xml:space="preserve">
+    <value>{"@ActivityNo":"20240612-133"}</value>
+  </metadata>
+  <metadata name="TxnHeaderActivityDoctorPrescription.QueryDesignerState" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;DM xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Telerik.Reporting.Design.QueryDesigner"&gt;&lt;Es&gt;&lt;E z:Id="i1"&gt;&lt;MBN&gt;vwTxnActivityHeaderDoctorPrescription&lt;/MBN&gt;&lt;MBP z:Id="i2" i:type="Namespace"&gt;&lt;MBN&gt;&lt;/MBN&gt;&lt;MOC&gt;&lt;MB z:Ref="i1" /&gt;&lt;/MOC&gt;&lt;/MBP&gt;&lt;MOC&gt;&lt;MB z:Id="i3" i:type="P"&gt;&lt;MBN&gt;ActivityNo&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i4" i:type="P"&gt;&lt;MBN&gt;EntityCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i5" i:type="P"&gt;&lt;MBN&gt;PatientID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i6" i:type="P"&gt;&lt;MBN&gt;PatientName&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i7" i:type="P"&gt;&lt;MBN&gt;StartActivity&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i8" i:type="P"&gt;&lt;MBN&gt;EndActivity&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i9" i:type="P"&gt;&lt;MBN&gt;ActivityStatusID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i10" i:type="P"&gt;&lt;MBN&gt;BillingStatusID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i11" i:type="P"&gt;&lt;MBN&gt;AppointmentStatusID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i12" i:type="P"&gt;&lt;MBN&gt;RegisterBy&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i13" i:type="P"&gt;&lt;MBN&gt;VisitTypeID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i14" i:type="P"&gt;&lt;MBN&gt;ReferralActivityID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i15" i:type="P"&gt;&lt;MBN&gt;AreaID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i16" i:type="P"&gt;&lt;MBN&gt;DoctorID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i17" i:type="P"&gt;&lt;MBN&gt;PaymentTypeID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i18" i:type="P"&gt;&lt;MBN&gt;CashlessTypeID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i19" i:type="P"&gt;&lt;MBN&gt;CurrentProcessID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i20" i:type="P"&gt;&lt;MBN&gt;NextProcessID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i21" i:type="P"&gt;&lt;MBN&gt;DoctorEmpId&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i22" i:type="P"&gt;&lt;MBN&gt;DoctorName&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i23" i:type="P"&gt;&lt;MBN&gt;DoctorTypeID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i24" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpIDCheck1&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i25" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpNameCheck1&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i26" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpIDCheck2&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i27" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpNameCheck2&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i28" i:type="P"&gt;&lt;MBN&gt;AgeYear&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i29" i:type="P"&gt;&lt;MBN&gt;AgeMonth&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i30" i:type="P"&gt;&lt;MBN&gt;EMRStatusID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i31" i:type="P"&gt;&lt;MBN&gt;PatientTypeID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i32" i:type="P"&gt;&lt;MBN&gt;PatientType&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i33" i:type="P"&gt;&lt;MBN&gt;CompanyCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i34" i:type="P"&gt;&lt;MBN&gt;EmployeeCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i35" i:type="P"&gt;&lt;MBN&gt;DependantCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i36" i:type="P"&gt;&lt;MBN&gt;TotalPrescription&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;/MOC&gt;&lt;ER /&gt;&lt;/E&gt;&lt;/Es&gt;&lt;Fs /&gt;&lt;MR&gt;false&lt;/MR&gt;&lt;Ps&gt;&lt;P z:Ref="i3" /&gt;&lt;P z:Ref="i4" /&gt;&lt;P z:Ref="i5" /&gt;&lt;P z:Ref="i6" /&gt;&lt;P z:Ref="i7" /&gt;&lt;P z:Ref="i8" /&gt;&lt;P z:Ref="i9" /&gt;&lt;P z:Ref="i10" /&gt;&lt;P z:Ref="i11" /&gt;&lt;P z:Ref="i12" /&gt;&lt;P z:Ref="i13" /&gt;&lt;P z:Ref="i14" /&gt;&lt;P z:Ref="i15" /&gt;&lt;P z:Ref="i16" /&gt;&lt;P z:Ref="i17" /&gt;&lt;P z:Ref="i18" /&gt;&lt;P z:Ref="i19" /&gt;&lt;P z:Ref="i20" /&gt;&lt;P z:Ref="i21" /&gt;&lt;P z:Ref="i22" /&gt;&lt;P z:Ref="i23" /&gt;&lt;P z:Ref="i24" /&gt;&lt;P z:Ref="i25" /&gt;&lt;P z:Ref="i26" /&gt;&lt;P z:Ref="i27" /&gt;&lt;P z:Ref="i28" /&gt;&lt;P z:Ref="i29" /&gt;&lt;P z:Ref="i30" /&gt;&lt;P z:Ref="i31" /&gt;&lt;P z:Ref="i32" /&gt;&lt;P z:Ref="i33" /&gt;&lt;P z:Ref="i34" /&gt;&lt;P z:Ref="i35" /&gt;&lt;P z:Ref="i36" /&gt;&lt;/Ps&gt;&lt;Rs /&gt;&lt;/DM&gt;</value>
+  </metadata>
+  <data name="TxnHeaderActivityDoctorPrescription.SelectCommand" xml:space="preserve">
+    <value>SELECT
+	[vwTxnActivityHeaderDoctorPrescription].[ActivityNo], 
+	[vwTxnActivityHeaderDoctorPrescription].[EntityCode], 
+	[vwTxnActivityHeaderDoctorPrescription].[PatientID], 
+	[vwTxnActivityHeaderDoctorPrescription].[PatientName], 
+	[vwTxnActivityHeaderDoctorPrescription].[StartActivity], 
+	[vwTxnActivityHeaderDoctorPrescription].[EndActivity], 
+	[vwTxnActivityHeaderDoctorPrescription].[ActivityStatusID], 
+	[vwTxnActivityHeaderDoctorPrescription].[BillingStatusID], 
+	[vwTxnActivityHeaderDoctorPrescription].[AppointmentStatusID], 
+	[vwTxnActivityHeaderDoctorPrescription].[RegisterBy], 
+	[vwTxnActivityHeaderDoctorPrescription].[VisitTypeID], 
+	[vwTxnActivityHeaderDoctorPrescription].[ReferralActivityID], 
+	[vwTxnActivityHeaderDoctorPrescription].[AreaID], 
+	[vwTxnActivityHeaderDoctorPrescription].[DoctorID], 
+	[vwTxnActivityHeaderDoctorPrescription].[PaymentTypeID], 
+	[vwTxnActivityHeaderDoctorPrescription].[CashlessTypeID], 
+	[vwTxnActivityHeaderDoctorPrescription].[CurrentProcessID], 
+	[vwTxnActivityHeaderDoctorPrescription].[NextProcessID], 
+	[vwTxnActivityHeaderDoctorPrescription].[DoctorEmpId], 
+	[vwTxnActivityHeaderDoctorPrescription].[DoctorName], 
+	[vwTxnActivityHeaderDoctorPrescription].[DoctorTypeID], 
+	[vwTxnActivityHeaderDoctorPrescription].[PharmacyEmpIDCheck1], 
+	[vwTxnActivityHeaderDoctorPrescription].[PharmacyEmpNameCheck1], 
+	[vwTxnActivityHeaderDoctorPrescription].[PharmacyEmpIDCheck2], 
+	[vwTxnActivityHeaderDoctorPrescription].[PharmacyEmpNameCheck2], 
+	[vwTxnActivityHeaderDoctorPrescription].[AgeYear], 
+	[vwTxnActivityHeaderDoctorPrescription].[AgeMonth], 
+	[vwTxnActivityHeaderDoctorPrescription].[EMRStatusID], 
+	[vwTxnActivityHeaderDoctorPrescription].[PatientTypeID], 
+	[vwTxnActivityHeaderDoctorPrescription].[PatientType], 
+	[vwTxnActivityHeaderDoctorPrescription].[CompanyCode], 
+	[vwTxnActivityHeaderDoctorPrescription].[EmployeeCode], 
+	[vwTxnActivityHeaderDoctorPrescription].[DependantCode], 
+	[vwTxnActivityHeaderDoctorPrescription].[TotalPrescription]
+FROM [vwTxnActivityHeaderDoctorPrescription]
+WHERE [vwTxnActivityHeaderDoctorPrescription].[ActivityNo] = @ActivityNo</value>
+  </data>
+  <metadata name="VwListTxnDoctorPrescription.QueryDesignerState" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;DM xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Telerik.Reporting.Design.QueryDesigner"&gt;&lt;Es&gt;&lt;E z:Id="i1"&gt;&lt;MBN&gt;vwTxnActivityDoctorPrescription&lt;/MBN&gt;&lt;MBP z:Id="i2" i:type="Namespace"&gt;&lt;MBN&gt;&lt;/MBN&gt;&lt;MOC&gt;&lt;MB z:Ref="i1" /&gt;&lt;/MOC&gt;&lt;/MBP&gt;&lt;MOC&gt;&lt;MB z:Id="i3" i:type="P"&gt;&lt;MBN&gt;ActivityNo&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i4" i:type="P"&gt;&lt;MBN&gt;ItemCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i5" i:type="P"&gt;&lt;MBN&gt;ItemName&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i6" i:type="P"&gt;&lt;MBN&gt;UnlistedItemName&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i7" i:type="P"&gt;&lt;MBN&gt;TotalIssues&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i8" i:type="P"&gt;&lt;MBN&gt;UOMCODE&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i9" i:type="P"&gt;&lt;MBN&gt;UOM&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i10" i:type="P"&gt;&lt;MBN&gt;IntervalID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i11" i:type="P"&gt;&lt;MBN&gt;Interval&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i12" i:type="P"&gt;&lt;MBN&gt;RoleUsage&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i13" i:type="P"&gt;&lt;MBN&gt;Remarks&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i14" i:type="P"&gt;&lt;MBN&gt;DateOrder&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i15" i:type="P"&gt;&lt;MBN&gt;DateDeliverToPatient&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i16" i:type="P"&gt;&lt;MBN&gt;StockID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i17" i:type="P"&gt;&lt;MBN&gt;BadgeNo&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i18" i:type="P"&gt;&lt;MBN&gt;ExpireDate&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i19" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpIDCheck1&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i20" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpNameCheck1&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i21" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpIDCheck2&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i22" i:type="P"&gt;&lt;MBN&gt;PharmacyEmpNameCheck2&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i23" i:type="P"&gt;&lt;MBN&gt;ExternalPrescription&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i24" i:type="P"&gt;&lt;MBN&gt;ExternalProviderID&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i25" i:type="P"&gt;&lt;MBN&gt;ExternalPriceUnit&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i26" i:type="P"&gt;&lt;MBN&gt;ExternalTotalPrice&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i27" i:type="P"&gt;&lt;MBN&gt;ExternalRequestDate&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i28" i:type="P"&gt;&lt;MBN&gt;ExternalReceive&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i29" i:type="P"&gt;&lt;MBN&gt;IsDelete&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i30" i:type="P"&gt;&lt;MBN&gt;UserEntryCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i31" i:type="P"&gt;&lt;MBN&gt;UserEntry&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i32" i:type="P"&gt;&lt;MBN&gt;DateEntry&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i33" i:type="P"&gt;&lt;MBN&gt;UserModifyCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i34" i:type="P"&gt;&lt;MBN&gt;UserModify&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i35" i:type="P"&gt;&lt;MBN&gt;DateModify&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i36" i:type="P"&gt;&lt;MBN&gt;UserDeleteCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i37" i:type="P"&gt;&lt;MBN&gt;UserDelete&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i38" i:type="P"&gt;&lt;MBN&gt;DateDelete&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i39" i:type="P"&gt;&lt;MBN&gt;ReasonDelete&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i40" i:type="P"&gt;&lt;MBN&gt;NoRecord&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i41" i:type="P"&gt;&lt;MBN&gt;QtyAllocate&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;/MOC&gt;&lt;ER /&gt;&lt;/E&gt;&lt;/Es&gt;&lt;Fs /&gt;&lt;MR&gt;false&lt;/MR&gt;&lt;Ps&gt;&lt;P z:Ref="i3" /&gt;&lt;P z:Ref="i4" /&gt;&lt;P z:Ref="i5" /&gt;&lt;P z:Ref="i6" /&gt;&lt;P z:Ref="i7" /&gt;&lt;P z:Ref="i8" /&gt;&lt;P z:Ref="i9" /&gt;&lt;P z:Ref="i10" /&gt;&lt;P z:Ref="i11" /&gt;&lt;P z:Ref="i12" /&gt;&lt;P z:Ref="i13" /&gt;&lt;P z:Ref="i14" /&gt;&lt;P z:Ref="i15" /&gt;&lt;P z:Ref="i16" /&gt;&lt;P z:Ref="i17" /&gt;&lt;P z:Ref="i18" /&gt;&lt;P z:Ref="i19" /&gt;&lt;P z:Ref="i20" /&gt;&lt;P z:Ref="i21" /&gt;&lt;P z:Ref="i22" /&gt;&lt;P z:Ref="i23" /&gt;&lt;P z:Ref="i24" /&gt;&lt;P z:Ref="i25" /&gt;&lt;P z:Ref="i26" /&gt;&lt;P z:Ref="i27" /&gt;&lt;P z:Ref="i28" /&gt;&lt;P z:Ref="i29" /&gt;&lt;P z:Ref="i30" /&gt;&lt;P z:Ref="i31" /&gt;&lt;P z:Ref="i32" /&gt;&lt;P z:Ref="i33" /&gt;&lt;P z:Ref="i34" /&gt;&lt;P z:Ref="i35" /&gt;&lt;P z:Ref="i36" /&gt;&lt;P z:Ref="i37" /&gt;&lt;P z:Ref="i38" /&gt;&lt;P z:Ref="i39" /&gt;&lt;P z:Ref="i40" /&gt;&lt;P z:Ref="i41" /&gt;&lt;/Ps&gt;&lt;Rs /&gt;&lt;/DM&gt;</value>
+  </metadata>
+  <data name="VwListTxnDoctorPrescription.SelectCommand" xml:space="preserve">
+    <value>SELECT
+	[vwTxnActivityDoctorPrescription].[ActivityNo], 
+	[vwTxnActivityDoctorPrescription].[ItemCode], 
+	[vwTxnActivityDoctorPrescription].[ItemName], 
+	[vwTxnActivityDoctorPrescription].[UnlistedItemName], 
+	[vwTxnActivityDoctorPrescription].[TotalIssues], 
+	[vwTxnActivityDoctorPrescription].[UOMCODE], 
+	[vwTxnActivityDoctorPrescription].[UOM], 
+	[vwTxnActivityDoctorPrescription].[IntervalID], 
+	[vwTxnActivityDoctorPrescription].[Interval], 
+	[vwTxnActivityDoctorPrescription].[RoleUsage], 
+	[vwTxnActivityDoctorPrescription].[Remarks], 
+	[vwTxnActivityDoctorPrescription].[DateOrder], 
+	[vwTxnActivityDoctorPrescription].[DateDeliverToPatient], 
+	[vwTxnActivityDoctorPrescription].[StockID], 
+	[vwTxnActivityDoctorPrescription].[BadgeNo], 
+	[vwTxnActivityDoctorPrescription].[ExpireDate], 
+	[vwTxnActivityDoctorPrescription].[PharmacyEmpIDCheck1], 
+	[vwTxnActivityDoctorPrescription].[PharmacyEmpNameCheck1], 
+	[vwTxnActivityDoctorPrescription].[PharmacyEmpIDCheck2], 
+	[vwTxnActivityDoctorPrescription].[PharmacyEmpNameCheck2], 
+	[vwTxnActivityDoctorPrescription].[ExternalPrescription], 
+	[vwTxnActivityDoctorPrescription].[ExternalProviderID], 
+	[vwTxnActivityDoctorPrescription].[ExternalPriceUnit], 
+	[vwTxnActivityDoctorPrescription].[ExternalTotalPrice], 
+	[vwTxnActivityDoctorPrescription].[ExternalRequestDate], 
+	[vwTxnActivityDoctorPrescription].[ExternalReceive], 
+	[vwTxnActivityDoctorPrescription].[IsDelete], 
+	[vwTxnActivityDoctorPrescription].[UserEntryCode], 
+	[vwTxnActivityDoctorPrescription].[UserEntry], 
+	[vwTxnActivityDoctorPrescription].[DateEntry], 
+	[vwTxnActivityDoctorPrescription].[UserModifyCode], 
+	[vwTxnActivityDoctorPrescription].[UserModify], 
+	[vwTxnActivityDoctorPrescription].[DateModify], 
+	[vwTxnActivityDoctorPrescription].[UserDeleteCode], 
+	[vwTxnActivityDoctorPrescription].[UserDelete], 
+	[vwTxnActivityDoctorPrescription].[DateDelete], 
+	[vwTxnActivityDoctorPrescription].[ReasonDelete], 
+	[vwTxnActivityDoctorPrescription].[NoRecord], 
+	[vwTxnActivityDoctorPrescription].[QtyAllocate],Dosage,DosageUnit,Frequency,FrequencyMaintainPeriod,[Route],[when]
+FROM [vwTxnActivityDoctorPrescription]
+WHERE [vwTxnActivityDoctorPrescription].[ActivityNo] = @ActivityNo</value>
+  </data>
+  <metadata name="LegalEntity.QueryDesignerState" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;DM xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Telerik.Reporting.Design.QueryDesigner"&gt;&lt;Es&gt;&lt;E z:Id="i1"&gt;&lt;MBN&gt;mstLegalEntity&lt;/MBN&gt;&lt;MBP z:Id="i2" i:type="Namespace"&gt;&lt;MBN&gt;&lt;/MBN&gt;&lt;MOC&gt;&lt;MB z:Ref="i1" /&gt;&lt;/MOC&gt;&lt;/MBP&gt;&lt;MOC&gt;&lt;MB z:Id="i3" i:type="P"&gt;&lt;MBN&gt;EntityCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i4" i:type="P"&gt;&lt;MBN&gt;EntityName&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i5" i:type="P"&gt;&lt;MBN&gt;ClinicName&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i6" i:type="P"&gt;&lt;MBN&gt;ClinicAddress&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i7" i:type="P"&gt;&lt;MBN&gt;ClinicLogo&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i8" i:type="P"&gt;&lt;MBN&gt;ClinicLicense&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i9" i:type="P"&gt;&lt;MBN&gt;NPWP&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i10" i:type="P"&gt;&lt;MBN&gt;PharmacyPIC&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i11" i:type="P"&gt;&lt;MBN&gt;PharmacyLicense&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i12" i:type="P"&gt;&lt;MBN&gt;FalconCode&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i13" i:type="P"&gt;&lt;MBN&gt;LabPIC&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i14" i:type="P"&gt;&lt;MBN&gt;XRayPIC&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i15" i:type="P"&gt;&lt;MBN&gt;UserEntry&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i16" i:type="P"&gt;&lt;MBN&gt;DateEntry&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i17" i:type="P"&gt;&lt;MBN&gt;UserModify&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i18" i:type="P"&gt;&lt;MBN&gt;DateModify&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;/MOC&gt;&lt;ER /&gt;&lt;/E&gt;&lt;/Es&gt;&lt;Fs /&gt;&lt;MR&gt;false&lt;/MR&gt;&lt;Ps&gt;&lt;P z:Ref="i3" /&gt;&lt;P z:Ref="i4" /&gt;&lt;P z:Ref="i5" /&gt;&lt;P z:Ref="i6" /&gt;&lt;P z:Ref="i7" /&gt;&lt;P z:Ref="i8" /&gt;&lt;P z:Ref="i9" /&gt;&lt;P z:Ref="i10" /&gt;&lt;P z:Ref="i11" /&gt;&lt;P z:Ref="i12" /&gt;&lt;P z:Ref="i13" /&gt;&lt;P z:Ref="i14" /&gt;&lt;P z:Ref="i15" /&gt;&lt;P z:Ref="i16" /&gt;&lt;P z:Ref="i17" /&gt;&lt;P z:Ref="i18" /&gt;&lt;/Ps&gt;&lt;Rs /&gt;&lt;/DM&gt;</value>
+  </metadata>
+  <data name="LegalEntity.SelectCommand" xml:space="preserve">
+    <value>SELECT
+	[mstLegalEntity].[EntityCode], 
+	[mstLegalEntity].[EntityName], 
+	[mstLegalEntity].[ClinicName], 
+	[mstLegalEntity].[ClinicAddress], 
+	[mstLegalEntity].[ClinicLogo], 
+	[mstLegalEntity].[ClinicLicense], 
+	[mstLegalEntity].[NPWP], 
+	[mstLegalEntity].[PharmacyPIC], 
+	[mstLegalEntity].[PharmacyLicense], 
+	[mstLegalEntity].[FalconCode], 
+	[mstLegalEntity].[LabPIC], 
+	[mstLegalEntity].[XRayPIC], 
+	[mstLegalEntity].[UserEntry], 
+	[mstLegalEntity].[DateEntry], 
+	[mstLegalEntity].[UserModify], 
+	[mstLegalEntity].[DateModify]
+FROM [mstLegalEntity]</value>
+  </data>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1.5</value>
+  </metadata>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.ShowWatermarks" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+</root>
