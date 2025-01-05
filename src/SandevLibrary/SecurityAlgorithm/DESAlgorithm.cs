@@ -105,7 +105,7 @@ namespace SandevLibrary.SecurityAlgorithm
             byte[] keyArray;
             byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);
 
-            AppSettingsReader settingsReader = new AppSettingsReader();
+            //AppSettingsReader settingsReader = new AppSettingsReader();
             // Get the key from config file
             //string key = (string)settingsReader.GetValue(_securityKey, typeof(String));
             //System.Windows.Forms.MessageBox.Show(key);
@@ -140,7 +140,7 @@ namespace SandevLibrary.SecurityAlgorithm
             byte[] keyArray;
             byte[] toEncryptArray = Convert.FromBase64String(cipherString);
 
-            System.Configuration.AppSettingsReader settingsReader = new AppSettingsReader();
+            //System.Configuration.AppSettingsReader settingsReader = new AppSettingsReader();
             //Get your key from config file to open the lock!
             //string key = (string)settingsReader.GetValue(_securityKey, typeof(String));
 

@@ -1,102 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SandevLibrary.SecurityAlgorithm;
 
 public class AesGCMAlgorithm
 {
-    //private static readonly int _keySize = 32; ///32 = 256bits encryption key (32 * 8).
-    //private static readonly int _nonceSize = AesGcm.NonceByteSizes.MaxSize;
-    //private static readonly int _tagSize = AesGcm.TagByteSizes.MaxSize;
-
-    private static readonly int _nonceSize = 12;
-    private static readonly int _tagSize = 16;
-
-    //private static int KeySize { get { return _keySize; } }
-    private static int NonceSize { get { return _nonceSize; } }
-    private static int TagSize { get { return _tagSize; } }
-
-    public static string GenKey(int keySize)
+    public static string EncryptAESGCM(string plainText, string password)
     {
-        byte[] key = new byte[keySize]; // 8, 16, 32 size encryption key.
-                                        // filling the arrays with strong random bytes.
-        RandomNumberGenerator.Fill(key);
-
-        // Converting the key into base 64 strings for easier manipulation.
-        string keyString = Convert.ToBase64String(key);
-
-        return keyString;
-    }
-
-    public static string Encrypt(string text, string base64key, string? authenticationTag = null)
-    {
-        byte[] key = Convert.FromBase64String(base64key);
-        byte[] nonce = new byte[NonceSize]; // Nonce (12 bytes) fixed size
-        byte[] tag = new byte[TagSize]; // Tag size is 16 bytes for AES-GCM
-
-        // Generate random nonce
-        RandomNumberGenerator.Fill(nonce);
-
-        byte[] cipherText = new byte[text.Length];
-        byte[] encryptedText;
-        
-        using (AesGcm cipher = new(key))
+        try
         {
-            cipher.Encrypt(
-                nonce,
-                Encoding.UTF8.GetBytes(text),
-                cipherText,
-                tag,
-                authenticationTag != null ? Encoding.UTF8.GetBytes(authenticationTag) : null
-            );
+            // Generate salt (16 bytes) dan IV (12 bytes)
+            byte[] salt = new byte[16];
+            byte[] iv = new byte[12];
+            using (RNGCryptoServiceProvider rng = new())
+            {
+                rng.GetBytes(salt);
+                rng.GetBytes(iv);
+            }
 
-            encryptedText = Concat(nonce, Concat(cipherText, tag)); // Concatenate Nonce, CipherText, and Tag
+            // Derivasi Key menggunakan PBKDF2
+            using Rfc2898DeriveBytes rfc2898 = new(password, salt, 10000, HashAlgorithmName.SHA256);
+            byte[] key = rfc2898.GetBytes(32); // AES-256 membutuhkan 32 byte kunci
+
+            using AesGcm aes = new(key);
+            byte[] encryptedText = new byte[plainText.Length];
+            byte[] authTag = new byte[16]; // Authentication Tag 16 bytes
+            aes.Encrypt(iv, Encoding.UTF8.GetBytes(plainText), encryptedText, authTag);
+
+            // Gabungkan Salt + IV + Ciphertext + Tag
+            byte[] combinedData = new byte[salt.Length + iv.Length + encryptedText.Length + authTag.Length];
+            Buffer.BlockCopy(salt, 0, combinedData, 0, salt.Length);
+            Buffer.BlockCopy(iv, 0, combinedData, salt.Length, iv.Length);
+            Buffer.BlockCopy(encryptedText, 0, combinedData, salt.Length + iv.Length, encryptedText.Length);
+            Buffer.BlockCopy(authTag, 0, combinedData, salt.Length + iv.Length + encryptedText.Length, authTag.Length);
+
+            return Convert.ToBase64String(combinedData);
         }
-
-        return Convert.ToBase64String(encryptedText);
-    }
-
-    public static string Decrypt(string encryptedText, string base64key, string? authenticationTag = null)
-    {
-        byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
-        byte[] key = Convert.FromBase64String(base64key);
-
-        byte[] nonce = SubArray(encryptedBytes, 0, NonceSize); // 12 bytes nonce
-        byte[] tag = SubArray(encryptedBytes, encryptedBytes.Length - 16, TagSize); // 16 bytes tag
-        byte[] cipherText = SubArray(encryptedBytes, 12, encryptedBytes.Length - 12 - 16); // CipherText
-
-        byte[] decryptedText = new byte[cipherText.Length];
-
-        using (AesGcm cipher = new(key))
+        catch (Exception ex)
         {
-            cipher.Decrypt(
-                nonce,
-                cipherText,
-                tag,
-                decryptedText,
-                authenticationTag != null ? Encoding.UTF8.GetBytes(authenticationTag) : null
-            );
+            throw new CryptographicException("Encryption failed: " + ex.Message);
         }
-
-        return Encoding.UTF8.GetString(decryptedText);
     }
 
-    private static byte[] Concat(byte[] a, byte[] b)
+    public static string DecryptAESGCM(string cipherTextBase64, string password)
     {
-        byte[] result = new byte[a.Length + b.Length];
-        Array.Copy(a, 0, result, 0, a.Length);
-        Array.Copy(b, 0, result, a.Length, b.Length);
-        return result;
-    }
+        try
+        {
+            byte[] cipherText = Convert.FromBase64String(cipherTextBase64);
 
-    private static byte[] SubArray(byte[] data, int start, int length)
-    {
-        byte[] result = new byte[length];
-        Array.Copy(data, start, result, 0, length);
-        return result;
+            // Ekstrak Salt, IV, Ciphertext, dan Tag
+            byte[] salt = cipherText[..16];
+            byte[] iv = cipherText[16..28];
+
+            // Ciphertext diambil sampai 16 byte sebelum akhir
+            byte[] encryptedText = cipherText[28..(cipherText.Length - 16)];
+
+            // Tag autentikasi adalah 16 byte terakhir
+            byte[] authTag = cipherText[^16..];
+
+            // Derivasi Key dengan PBKDF2
+            using Rfc2898DeriveBytes rfc2898 = new(password, salt, 10000, HashAlgorithmName.SHA256);
+            byte[] key = rfc2898.GetBytes(32); // AES-256 membutuhkan 32 byte kunci
+
+            using AesGcm aes = new(key);
+            byte[] decryptedText = new byte[encryptedText.Length];
+            aes.Decrypt(iv, encryptedText, authTag, decryptedText);
+            return Encoding.UTF8.GetString(decryptedText);
+        }
+        catch (Exception ex)
+        {
+            throw new CryptographicException("Decryption failed: " + ex.Message);
+        }
     }
 }
