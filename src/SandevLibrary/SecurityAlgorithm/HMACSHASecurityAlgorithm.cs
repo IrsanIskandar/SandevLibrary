@@ -524,7 +524,7 @@ namespace SandevLibrary.SecurityAlgorithm
             return random.Next(minValue, maxValue + 1);
         }
 
-        public static string ByteToString(byte[] buff)
+        private static string ByteToString(byte[] buff)
         {
             string sbinary = "";
 
@@ -578,7 +578,7 @@ namespace SandevLibrary.SecurityAlgorithm
             return cleartext;
         }
 
-        public static void UseHMACAlgorithm(string plainText)
+        private static void UseHMACAlgorithm(string plainText)
         {
             System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
             byte[] keyByte = encoding.GetBytes(hashKey);
@@ -617,7 +617,7 @@ namespace SandevLibrary.SecurityAlgorithm
             Console.WriteLine(cleartext);
         }
 
-        public static string SignatureHash(string yourSecretKey, string yourMessage)
+        private static string SignatureHash(string yourSecretKey, string yourMessage)
         {
             // change according to your needs, an UTF8Encoding
             // could be more suitable in certain situations

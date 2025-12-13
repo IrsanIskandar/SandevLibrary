@@ -18,7 +18,7 @@
 	</PropertyGroup>
 	
 	<PropertyGroup>
-		<PackageId>Sandev.Library</PackageId>
+		<PackageId>SandevLibrary</PackageId>
 		<RepositoryUrl>https://github.com/IrsanIskandar/SandevLibrary</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/IrsanIskandar/SandevLibrary</PackageProjectUrl>
