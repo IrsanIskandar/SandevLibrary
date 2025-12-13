@@ -1,5 +1,5 @@
 # Sandev Library
 
 Suppurt Library For .NET
-Reusable library for .NET 8 and .NET 9 with EF Core and Dapper
+Reusable library for .NET 8, 9, and 10
 # EFCore;Dapper;Utility;SecurityAlgorithm;Enryption;Decryption;
