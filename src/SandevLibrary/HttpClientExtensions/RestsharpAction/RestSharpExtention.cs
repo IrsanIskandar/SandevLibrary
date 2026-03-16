@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -22,11 +23,15 @@ public class RestSharpExtention
 
     private static RestClient RestClientInitialize()
 	{
-		RestClientOptions clientOptions = new RestClientOptions(_BASE_URL)
+        var cookieContainer = new CookieContainer();
+
+        RestClientOptions clientOptions = new RestClientOptions(_BASE_URL)
 		{
 			ThrowOnAnyError = true,
-			Timeout = System.TimeSpan.FromSeconds(120)
-		};
+			Timeout = System.TimeSpan.FromSeconds(120),
+            CookieContainer = cookieContainer
+        };
+
 		RestClient client = new RestClient(clientOptions);
 
 		return client;
@@ -36,9 +41,10 @@ public class RestSharpExtention
 	{
 		string joinUrl = string.Concat(_BASE_URL, va_request_endpoint);
 		RestRequest request = new RestRequest(joinUrl, method);
-		//request.AddHeader("Authorization", "Bearer ");
+        //request.AddHeader("Authorization", "Bearer ");
+        request.CookieContainer = Client.Options.CookieContainer;
 
-		return request;
+        return request;
 	}
 
     public TObject GetSingleRequest<TObject>(string va_request_endpoint, Dictionary<string, object>? headers = null, string? contentType = "application/Json", string? stringJson = null, ParameterType parameterType = ParameterType.RequestBody)

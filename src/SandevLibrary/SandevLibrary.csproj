@@ -2,33 +2,46 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
-		
+
 		<Title>Sandev Library</Title>
 		<Description>Reusable library for .NET 8, 9, and 10</Description>
 		<Authors>Irsan Iskandar</Authors>
 		<Company>Irsan.Dev</Company>
-		
-		<AssemblyVersion>2.6.0</AssemblyVersion>
-		<FileVersion>2.6.0</FileVersion>
-		<Version>2.6.0</Version>
-		
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Nullable>enable</Nullable>
-		<PackageTags>EFCore;Dapper;Utility;SecurityAlgorithm;Enryption;Decryption;</PackageTags>
-	</PropertyGroup>
-	
-	<PropertyGroup>
+
 		<PackageId>SandevLibrary</PackageId>
+		<Version>2.8.1 </Version>
+		<AssemblyVersion>2.8.1</AssemblyVersion>
+		<FileVersion>2.8.1</FileVersion>
+
 		<RepositoryUrl>https://github.com/IrsanIskandar/SandevLibrary</RepositoryUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/IrsanIskandar/SandevLibrary</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+		<PackageTags>EFCore;Dapper;Utility;Security;Encryption</PackageTags>
+
+		<Nullable>enable</Nullable>
+
+		<!-- NuGet Pack -->
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BCrypt.Net-Next" Version="4.*" />
 		<PackageReference Include="Dapper" Version="2.*" />
+		<PackageReference Include="Konscious.Security.Cryptography.Argon2" Version="1.*" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.*" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.*" />
 		<PackageReference Include="NPOI" Version="2.*" />
+		<PackageReference Include="Polly" Version="8.6.6" />
 		<PackageReference Include="RestSharp" Version="113.*" />
 	</ItemGroup>
 
