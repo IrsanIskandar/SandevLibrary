@@ -15,6 +15,8 @@ public class RestSharpClient
     private readonly ILogger<RestSharpClient> _logger;
     private readonly IAsyncPolicy<RestResponse> _retryPolicy;
 
+    private static readonly CookieContainer _cookieContainer = new CookieContainer();
+
     public RestSharpClient(string baseUrl, ILogger<RestSharpClient> logger)
     {
         _logger = logger;
@@ -22,7 +24,7 @@ public class RestSharpClient
         var options = new RestClientOptions(baseUrl)
         {
             Timeout = TimeSpan.FromSeconds(120),
-            CookieContainer = new CookieContainer()
+            CookieContainer = _cookieContainer
         };
 
         _client = new RestClient(options);
